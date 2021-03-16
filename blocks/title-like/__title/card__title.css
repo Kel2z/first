@@ -2,5 +2,7 @@
     width: 100%;
     text-align: left;
     margin: auto;
-    display: flex;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }

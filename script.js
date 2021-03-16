@@ -1,5 +1,5 @@
 let cards = [
-    {image: './images/main1.jpg', text: 'Peter'},
+    {image: './images/main1.jpg', text: 'Peter de sent Jupiter'},
     {image: './images/main2.jpg', text: 'Luis'},
     {image: './images/main3.jpg', text: 'Hank'},
     {image: './images/main4.jpg', text: 'Douglas'},

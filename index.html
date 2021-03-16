@@ -19,9 +19,9 @@
       <profile__info class="profile__info">
         <profile__info__first-string class="profile__info__first-string">
           <p1 class="profile__info__name">Cat</p1>
-          <profile__info__edit-button class="profile__info__edit-button">
+          <button class="profile__info__edit-button">
             <img src="./images/images/edit-icon.svg" alt="Edit" class="profile__info__edit-button__icon">
-          </profile__info__edit-button>
+          </button>
         </profile__info__first-string>
         <p4 class="profile__info__detail">Люблю кушать</p4>
       </profile__info>
@@ -78,6 +78,17 @@
     <footer class="footer">
       <p4 class="company">© 2020 Mesto Russia</p4>
     </footer>
+    <section class="popup">
+      <div class="popup__container">
+        <img src="./images/images/close.svg" alt="Закрыть" class="popup__close">
+        <div class="popup__content">
+          <h2 class="popup__title">Редактировать профиль</h2>
+          <input type="text" class="popup__field1">
+          <input type="text" class="popup__field2">
+          <button class="popup__save">Сохранить</button>
+        </div>
+      </div>
+    </section>
   </div>
   <script src="./script.js"></script>
 </body>

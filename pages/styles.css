@@ -18,4 +18,12 @@
 @import "../blocks/title-like/card__title-like.css";
 @import "../blocks/title-like/__title/card__title.css";
 @import "../blocks/footer/footer.css";
-@import "../blocks/title-like/__title/like.css";
+@import "../blocks/popup/popup.css";
+@import "../blocks/popup/__container/popup__container.css";
+@import "../blocks/popup/__close/popup__close.css";
+@import "../blocks/popup/__title/popup__title.css";
+@import "../blocks/popup/__field1/popup__field1.css";
+@import "../blocks/popup/__field2/popup__field2.css";
+@import "../blocks/title-like/like/like.css";
+@import "../blocks/popup/__save/popup__save.css";
+@import "../blocks/popup/__content/popup__content.css";
