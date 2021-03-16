@@ -1,0 +1,8 @@
+.header {
+    position: relative;
+    min-height: 74px;
+    width: auto;
+    border-radius: 0px;
+    display: flex;
+    flex-direction: column;
+}

@@ -1,0 +1,11 @@
+.page {
+    font-family: Inter, Helvetica, sans-serif;
+    min-width: 320px;
+    max-width: 1280px;
+    background-color: #000;
+    box-sizing: border-box;
+    padding: 45px 15.625% 40px;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+}

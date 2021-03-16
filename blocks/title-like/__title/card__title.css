@@ -1,0 +1,6 @@
+.card__title {
+    width: 100%;
+    text-align: left;
+    margin: auto;
+    display: flex;
+}

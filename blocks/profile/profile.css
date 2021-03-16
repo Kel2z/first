@@ -1,0 +1,10 @@
+.profile {
+    min-height: 120px;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: auto;
+    margin-top: 40px;
+    justify-items: center;
+}
