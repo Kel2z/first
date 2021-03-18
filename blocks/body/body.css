@@ -1,0 +1,12 @@
+.body {
+    font-family: Inter, Helvetica, sans-serif;
+    min-width: 320px;
+    max-width: 1280px;
+    background-color: #000;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    align-items: center;
+    color: white;
+}

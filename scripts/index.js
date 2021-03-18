@@ -4,8 +4,6 @@ const popupCloseButton = document.querySelector('.popup__close')
 const popupSave = document.querySelector('.popup__save')
 const popupCloseByClickOnOverlay = (event) => {
     console.log({
-        target: event.target,
-        currentTarget: event.currentTarget,
     })
     if (event.target != event.currentTarget) {
         return
@@ -22,3 +20,16 @@ popupOpenButton.addEventListener('click', popupToggle)
 popupCloseButton.addEventListener('click', popupToggle)
 popupSave.addEventListener('click', popupToggle)
 popup.addEventListener('click', popupCloseByClickOnOverlay)
+
+
+const likes = document.querySelectorAll('.like')
+
+const likeOn  = function (a) {
+    console.log({
+        event: a.target,
+        currentTarget: a.currentTarget,
+    })
+    a.classList.toggle('like_is-clicked')
+}
+
+likes.forEach(b => b.addEventListener('click', likeOn(b)))

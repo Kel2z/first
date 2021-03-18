@@ -24,7 +24,9 @@
 @import "../blocks/popup/__title/popup__title.css";
 @import "../blocks/popup/__field1/popup__field1.css";
 @import "../blocks/popup/__field2/popup__field2.css";
-@import "../blocks/title-like/like/like.css";
 @import "../blocks/popup/__save/popup__save.css";
 @import "../blocks/popup/__content/popup__content.css";
-@import "../blocks/popup/_is-opened/popup_is-opened.css"
+@import "../blocks/popup/_is-opened/popup_is-opened.css";
+@import "../blocks/body/body.css";
+@import "../blocks/title-like/like/like.css";
+@import "../blocks/title-like/like/_is-clicked/like_is-clicked.css";

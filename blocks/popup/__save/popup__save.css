@@ -13,3 +13,7 @@
     letter-spacing: 0em;
     text-align: center;
 }
+.popup__save:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
