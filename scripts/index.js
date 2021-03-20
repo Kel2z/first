@@ -1,9 +1,13 @@
+'use strict'
 const popup = document.querySelector('.popup')
 const popupOpenButton = document.querySelector('.js-menu__open-popup')
 const popupCloseButton = document.querySelector('.popup__close')
 const popupSave = document.querySelector('.popup__save')
+const cardsJs = document.querySelector('.cards')
 const popupCloseByClickOnOverlay = (event) => {
     console.log({
+        target: event.target, 
+        currentTarget: event.currentTarget
     })
     if (event.target != event.currentTarget) {
         return
@@ -11,8 +15,7 @@ const popupCloseByClickOnOverlay = (event) => {
     popupToggle()
 }
 
-const popupToggle = function (event) {
-    console.log("Button clicked")
+const popupToggle = function () {
     popup.classList.toggle('popup_is-opened')
 }
 
@@ -21,15 +24,13 @@ popupCloseButton.addEventListener('click', popupToggle)
 popupSave.addEventListener('click', popupToggle)
 popup.addEventListener('click', popupCloseByClickOnOverlay)
 
-
 const likes = document.querySelectorAll('.like')
 
-const likeOn  = function (a) {
-    console.log({
-        event: a.target,
-        currentTarget: a.currentTarget,
-    })
-    a.classList.toggle('like_is-clicked')
+const likeOn = (event) => {
+    if (event.target.classList[0] == 'like') {
+    event.target.classList.toggle('like_is-clicked')
+    }
 }
 
-likes.forEach(b => b.addEventListener('click', likeOn(b)))
+cardsJs.addEventListener('click', likeOn)
+
