@@ -6,17 +6,28 @@ const cards = [
     {image: './images/main5.jpg', text: 'Jesse'},
     {image: './images/main6.jpg', text: 'Walter'},
 ];
-for (i=0; i<cards.length; i++) {
-    document.querySelector('.card__title__'+(i+1)).textContent = cards[i].text;
-    document.querySelector('.card__image__'+(1+i)).src = cards[i].image;
-}
-
 
 const addCard = function (i) {
     let div = document.createElement('div');
-    div.className = "card";
-    div.innerHTML = cards[i].text;
+    div.classList.add ("card", "card__margin");
     
+    let img = document.createElement('img');
+    img.className = 'card__image';
+    img.src = cards[i].image;
+
+
+    let h2 = document.createElement('h2');
+    h2.className = 'card__title';
+    h2.innerHTML = cards[i].text;
+
+    let button = document.createElement('button');
+    button.className = 'like';
+
+    let section = document.createElement('div');
+    section.className = 'card__title-like';
+    section.append(h2, button);
+    div.append(img, section);
+
 document.querySelector('.cards').append(div)
 }
 
