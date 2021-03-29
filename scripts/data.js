@@ -34,3 +34,11 @@ document.querySelector('.cards').append(div)
 for (i=0; i<cards.length; i++) {
     addCard(i)
 }
+const updateName = function () {
+    userName.textContent = changeName.value;
+}
+
+let changeName = document.querySelector('.popup__field1');
+let userName = document.querySelector('.profile__info__name');
+changeName.addEventListener('input', updateName);
+
