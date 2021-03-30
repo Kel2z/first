@@ -7,7 +7,7 @@
     border: 0;
     outline: 0;
     background-color: white;
-    background-position: center;
+    background-position: inherit;
     background-size: cover;
     background-image: url("../../../images/images/like-inactive.svg");
 }

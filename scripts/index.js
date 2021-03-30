@@ -31,8 +31,7 @@ const popupToggle = function () {
 
 popupOpenButton.addEventListener('click', popupToggle)
 popupCloseButton.addEventListener('click', popupToggle)
-popupSave.addEventListener('click', popupToggle)
-popup.addEventListener('click', popupCloseByClickOnOverlay)
+popup.addEventListener('mousedown', popupCloseByClickOnOverlay)
 
 const likes = document.querySelectorAll('.like')
 
@@ -49,6 +48,7 @@ const itemTemplate = document.querySelector(".template__card").content;
 function lenta () {
     cards.forEach(renderItem);
 }
+
 function renderItem (item) {
     const cardsElement = itemTemplate.cloneNode(true);
     cardsElement.querySelector(".card__image").src = item.image;
@@ -57,10 +57,19 @@ function renderItem (item) {
 }
 lenta ()
 
-const updateName = function () {
+let nickname = "Cat";
+let detail = "Люблю кушать"
+let changeName = document.querySelector('.popup__field1');
+let changeDetail = document.querySelector('.popup__field2');
+let userName = document.querySelector('.profile__info__name');
+let userDetail = document.querySelector('.profile__info__detail');
+changeName.value = nickname;
+changeDetail.value = detail;
+
+function saveChanges (evt) {
+    popup.classList.toggle('popup_is-opened')
     userName.textContent = changeName.value;
+    userDetail.textContent = changeDetail.value;
 }
 
-let changeName = document.querySelector('.popup__field1');
-let userName = document.querySelector('.profile__info__name');
-changeName.addEventListener('input', updateName);
+popupSave.addEventListener('click', saveChanges);
