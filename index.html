@@ -16,39 +16,47 @@
     </header>
     <section class="profile">
       <img src="./images/ava.jpg" alt="Аватар" class="profile__avatar">
-      <profile__info class="profile__info">
-        <profile__info__first-string class="profile__info__first-string">
+      <div class="profile__info">
+        <div class="profile__info__first-string">
           <h1 class="profile__info__name">Cat</h1>
           <button class="profile__info__edit-button js-menu__open-popup">
             <img src="./images/images/edit-icon.svg" alt="Редактировать информацию" class="profile__info__edit-button__icon">
           </button>
-        </profile__info__first-string>
-        <p4 class="profile__info__detail">Люблю кушать</p4>
-      </profile__info>
-      <profile__add-button class="profile__add-button">
+        </div>
+        <h4 class="profile__info__detail">Люблю кушать</h4>
+      </div>
+      <div class="profile__add-button">
         <div class="profile__add-button__rectangle">
           <img src="./images/images/add-icon.svg" alt="Добавить фото" class="profile__add-button__plus">
         </div>
-      </profile__add-button>
+      </div>
     </section>
-    <section class="cards"> 
+    <section class="cards">
+      <template class="template__card">
+        <div class="card">
+          <img src="" alt="Фото кота" class="card__image">
+          <div class="card__title-like">
+            <h2 class="card__title"></h2>
+            <button class="like"></button>
+          </div>
+        </div>
+      </template>
     </section>
     <footer class="footer">
-      <p4 class="company">© 2020 Mesto Russia</p4>
+      <h4 class="company">© 2020 Mesto Russia</h4>
     </footer>
     <section class="popup">
       <div class="popup__container">
         <img src="./images/images/close.svg" alt="Закрыть" class="popup__close">
         <div class="popup__content">
           <h2 class="popup__title">Редактировать профиль</h2>
-          <input type="text" placeholder="Cat" class="popup__field1">
+          <input type="text" class="popup__field1">
           <input type="text" class="popup__field2">
           <button class="popup__save">Сохранить</button>
         </div>
       </div>
     </section>
   </div>
-  <script src="./scripts/data.js"></script>
   <script src="./scripts/index.js" defer></script>
 </body>
 </html>
