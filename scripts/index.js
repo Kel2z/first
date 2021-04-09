@@ -53,9 +53,15 @@ function renderItem (item) {
     const cardsElement = itemTemplate.cloneNode(true);
     cardsElement.querySelector(".card__image").src = item.image;
     cardsElement.querySelector(".card__title").innerText = item.text;
+    cardsElement.querySelector(".delete").addEventListener('click', deleteItem);
     cardsJs.appendChild(cardsElement);
 }
 lenta ()
+
+
+function deleteItem (evt) {
+    evt.target.closest(".card").remove();
+}
 
 let nickname = "Cat";
 let detail = "Люблю кушать"
