@@ -5,6 +5,10 @@ const popupCloseButton = document.querySelector('.popup__close')
 const popupSave = document.querySelector('.popup__save')
 const cardsJs = document.querySelector('.cards')
 const cardJs = document.querySelector('.card')
+const addCard = document.querySelector('.profile__add-button__rectangle')
+const popupAdd = document.querySelector('.popup-add')
+const popupAddCloseButton = document.querySelector('.popup-add__close')
+const popupAddSave = document.querySelector('.popup-add__save')
 const cards = [
     {image: './images/main1.jpg', text: 'Peter de sent Jupiter'},
     {image: './images/main2.jpg', text: 'Luis'},
@@ -79,3 +83,17 @@ function saveChanges (evt) {
 }
 
 popupSave.addEventListener('click', saveChanges);
+
+function popupAddToggle () {
+    popupAdd.classList.toggle('popup-add_is-opened');
+}
+
+addCard.addEventListener('click', popupAddToggle);
+
+popupAddCloseButton.addEventListener('click', popupAddToggle)
+
+let urlNewCard = document.querySelector('.popup-url');
+function createCard () {
+    popupAdd.classList.toggle('popup-add_is-opened');
+}
+popupAddSave.addEventListener('click', createCard)
