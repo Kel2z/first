@@ -101,5 +101,7 @@ function createCard () {
     newCard.querySelector('.card__title').innerText = textNewCard.value;
     newCard.querySelector(".delete").addEventListener('click', deleteItem);
     cardsJs.appendChild(newCard);
+    urlNewCard.value = "";
+    textNewCard.value = "";
 }
 popupAddSave.addEventListener('click', createCard)
