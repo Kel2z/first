@@ -1,0 +1,9 @@
+.popup-add__text {
+    margin: 0;
+    padding: 0;
+    margin-bottom: 48px;
+    border-width: 0;
+    border-bottom: 1px solid rgb(0,0,0,.2);
+    height: 27px;
+    box-sizing: border-box;
+}
