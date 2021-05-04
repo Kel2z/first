@@ -93,7 +93,13 @@ addCard.addEventListener('click', popupAddToggle);
 popupAddCloseButton.addEventListener('click', popupAddToggle)
 
 let urlNewCard = document.querySelector('.popup-url');
+let textNewCard = document.querySelector('.popup-add__text');
 function createCard () {
     popupAdd.classList.toggle('popup-add_is-opened');
+    const newCard = itemTemplate.cloneNode(true);
+    newCard.querySelector('.card__image').src = urlNewCard.value;
+    newCard.querySelector('.card__title').innerText = textNewCard.value;
+    newCard.querySelector(".delete").addEventListener('click', deleteItem);
+    cardsJs.appendChild(newCard);
 }
 popupAddSave.addEventListener('click', createCard)
