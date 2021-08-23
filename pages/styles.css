@@ -28,8 +28,10 @@
 @import "../blocks/popup/__content/popup__content.css";
 @import "../blocks/popup/_is-opened/popup_is-opened.css";
 @import "../blocks/body/body.css";
-@import "../blocks/title-like/like/like.css";
-@import "../blocks/title-like/like/_is-clicked/like_is-clicked.css";
+@import "../blocks/title-like/likes/likes.css";
+@import "../blocks/title-like/likes/like/like.css";
+@import "../blocks/title-like/likes/like/like_is-clicked.css";
+@import "../blocks/title-like/likes/number__likes/number__likes.css";
 @import "../blocks/card/delete.css";
 @import "../blocks/popup-add/popup-add.css";
 @import "../blocks/popup-add/_is-opened/popup-add_is-opened.css";

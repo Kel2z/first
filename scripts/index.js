@@ -11,6 +11,11 @@ const popupAddCloseButton = document.querySelector('.popup-add__close')
 const popupAddSave = document.querySelector('.popup-add__save')
 let urlNewCard = document.querySelector('.popup-url');
 let textNewCard = document.querySelector('.popup-add__text');
+let changeName = document.querySelector('.popup__field1');
+let changeDetail = document.querySelector('.popup__field2');
+let userName = document.querySelector('.profile__info__name');
+let userDetail = document.querySelector('.profile__info__detail');
+let numberOfLikes = document.querySelector('.number__likes')
 
 const popupCloseByClickOnOverlay = (event) => {
     console.log({
@@ -44,16 +49,11 @@ cardsJs.addEventListener('click', likeOn)
 const itemTemplate = document.querySelector(".template__card").content;
 
 
-
-
 function deleteItem (evt) {
     evt.target.closest(".card").remove();
+
 }
 
-let changeName = document.querySelector('.popup__field1');
-let changeDetail = document.querySelector('.popup__field2');
-let userName = document.querySelector('.profile__info__name');
-let userDetail = document.querySelector('.profile__info__detail');
 
 //  Сохранение изменений имени профиля и дополнительной информации
 function saveChanges (evt) {
@@ -131,6 +131,7 @@ authorization: '80a75492-21c5-4330-a02f-308029e94b63'
         const cardsElement = itemTemplate.cloneNode(true);
         cardsElement.querySelector(".card__image").src = result[any].link;
         cardsElement.querySelector(".card__title").innerText = result[any].name;
+        cardsElement.querySelector(".number__likes").innerText = result[any].likes.length;
         cardsElement.querySelector(".delete").addEventListener('click', deleteItem);
         cardsJs.appendChild(cardsElement);
         }
