@@ -84,15 +84,22 @@ let urlNewCard = document.querySelector('.popup-url');
 let textNewCard = document.querySelector('.popup-add__text');
 function createCard () {
     popupAdd.classList.toggle('popup-add_is-opened');
-    const newCard = itemTemplate.cloneNode(true);
-    newCard.querySelector('.card__image').src = urlNewCard.value;
-    newCard.querySelector('.card__title').innerText = textNewCard.value;
-    newCard.querySelector(".delete").addEventListener('click', deleteItem);
-    cardsJs.appendChild(newCard);
+    fetch('https://mesto.nomoreparties.co/cohort0/cards', {
+        method: 'POST',
+        headers: {
+            authorization: '80a75492-21c5-4330-a02f-308029e94b63',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            name: textNewCard.value,
+            link: urlNewCard.value,
+        })
+    })
     urlNewCard.value = "";
     textNewCard.value = "";
 }
 popupAddSave.addEventListener('click', createCard)
+
 
 
 fetch('https://mesto.nomoreparties.co/cohort0/users/me', {
