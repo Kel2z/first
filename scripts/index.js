@@ -9,6 +9,8 @@ const addCard = document.querySelector('.profile__add-button__rectangle')
 const popupAdd = document.querySelector('.popup-add')
 const popupAddCloseButton = document.querySelector('.popup-add__close')
 const popupAddSave = document.querySelector('.popup-add__save')
+let urlNewCard = document.querySelector('.popup-url');
+let textNewCard = document.querySelector('.popup-add__text');
 
 const popupCloseByClickOnOverlay = (event) => {
     console.log({
@@ -53,6 +55,7 @@ let changeDetail = document.querySelector('.popup__field2');
 let userName = document.querySelector('.profile__info__name');
 let userDetail = document.querySelector('.profile__info__detail');
 
+//  Сохранение изменений имени профиля и дополнительной информации
 function saveChanges (evt) {
     popup.classList.toggle('popup_is-opened');
     fetch('https://mesto.nomoreparties.co/cohort0/users/me', {
@@ -69,19 +72,18 @@ function saveChanges (evt) {
     changeName.value = userName.innerText;
     changeDetail.value = userDetail.innerText;
 }
-
 popupSave.addEventListener('click', saveChanges);
 
+// Открытие попапа "Добавить карточку"
 function popupAddToggle () {
     popupAdd.classList.toggle('popup-add_is-opened');
 }
-
 addCard.addEventListener('click', popupAddToggle);
 
+// Закрытие попапа "Добавить карточку"
 popupAddCloseButton.addEventListener('click', popupAddToggle)
 
-let urlNewCard = document.querySelector('.popup-url');
-let textNewCard = document.querySelector('.popup-add__text');
+// Создание карточки на сервере
 function createCard () {
     popupAdd.classList.toggle('popup-add_is-opened');
     fetch('https://mesto.nomoreparties.co/cohort0/cards', {
@@ -100,8 +102,7 @@ function createCard () {
 }
 popupAddSave.addEventListener('click', createCard)
 
-
-
+// Загрузка информации о пользователе
 fetch('https://mesto.nomoreparties.co/cohort0/users/me', {
 headers: {
 authorization: '80a75492-21c5-4330-a02f-308029e94b63'
@@ -116,6 +117,7 @@ changeName.value = userName.innerText;
 changeDetail.value = userDetail.innerText;
 });
 
+// Загрузка карточек с сервера
 fetch('https://mesto.nomoreparties.co/cohort0/cards', {
 headers: {
 authorization: '80a75492-21c5-4330-a02f-308029e94b63'
