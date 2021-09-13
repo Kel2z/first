@@ -1,0 +1,11 @@
+.popup-del__close {
+    position: absolute;
+    height: 40px;
+    top: -40px;
+    right: -40px;
+    width: 40px;
+}
+.popup-del__close:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
