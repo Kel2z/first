@@ -6,3 +6,7 @@
     align-items: center;
     justify-content: center;
 }
+.profile__add-button__rectangle:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
