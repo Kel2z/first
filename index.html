@@ -15,15 +15,15 @@
       <div class="header__line"></div>
     </header>
     <section class="profile">
-      <img src="./images/ava.jpg" alt="Аватар" class="profile__avatar">
+      <img alt="Аватар" class="profile__avatar">
       <div class="profile__info">
         <div class="profile__info__first-string">
-          <h1 class="profile__info__name">Cat</h1>
+          <h1 class="profile__info__name"></h1>
           <button class="profile__info__edit-button js-menu__open-popup">
             <img src="./images/images/edit-icon.svg" alt="Редактировать информацию" class="profile__info__edit-button__icon">
           </button>
         </div>
-        <h4 class="profile__info__detail">Люблю кушать</h4>
+        <h4 class="profile__info__detail"></h4>
       </div>
       <div class="profile__add-button">
         <div class="profile__add-button__rectangle">
@@ -33,13 +33,16 @@
     </section>
     <section class="cards">
       <template class="template__card">
-        <div class="card">
-          <img src="" alt="Фото кота" class="card__image">
+        <div class="card" id="" likers="">
+          <img src="" alt="Фото" class="card__image">
           <div class="card__title-like">
             <h2 class="card__title"></h2>
-            <button class="delete"></button>
-            <button class="like"></button>
+            <div class='likes'>
+              <button class="like"></button>
+              <h3 class="number__likes"></h3>
+            </div>
           </div>
+          <img src="../../../images/images/delete--v3.png" class="delete">
         </div>
       </template>
     </section>
@@ -65,6 +68,15 @@
           <input type="text" class="popup-url" placeholder="URL">
           <input type="text" class="popup-add__text" placeholder="Text">
           <button class="popup-add__save">Добавить</button>
+        </div>
+      </div>
+    </section>
+    <section class="popup-del">
+      <div class="popup-del__container">
+        <img src="./images/images/close.svg" alt="Закрыть" class="popup-del__close">
+        <div class="popup-del__content">
+          <h2 class="popup-del__title">Вы уверены?</h2>
+          <button class="popup-del__yes">Да</button>
         </div>
       </div>
     </section>

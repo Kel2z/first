@@ -8,21 +8,21 @@ const cardJs = document.querySelector('.card')
 const addCard = document.querySelector('.profile__add-button__rectangle')
 const popupAdd = document.querySelector('.popup-add')
 const popupAddCloseButton = document.querySelector('.popup-add__close')
-const popupAddSave = document.querySelector('.popup-add__save')
-const cards = [
-    {image: './images/main1.jpg', text: 'Peter de sent Jupiter'},
-    {image: './images/main2.jpg', text: 'Luis'},
-    {image: './images/main3.jpg', text: 'Hank'},
-    {image: './images/main4.jpg', text: 'Douglas'},
-    {image: './images/main5.jpg', text: 'Jesse'},
-    {image: './images/main6.jpg', text: 'Walter'},
-];
+const popupAddSave = document.querySelector('.popup-add__save');
+let urlNewCard = document.querySelector('.popup-url');
+let textNewCard = document.querySelector('.popup-add__text');
+let changeName = document.querySelector('.popup__field1');
+let changeDetail = document.querySelector('.popup__field2');
+let userName = document.querySelector('.profile__info__name');
+let userDetail = document.querySelector('.profile__info__detail');
+let numberOfLikes = document.querySelector('.number__likes');
+const popupDel = document.querySelector(".popup-del");
+const popupDelClose = document.querySelector('.popup-del__close');
+const popupDelYes = document.querySelector('.popup-del__yes');
+const like = document.querySelectorAll('.like');
+let ChoseCard;
 
 const popupCloseByClickOnOverlay = (event) => {
-    console.log({
-        target: event.target, 
-        currentTarget: event.currentTarget
-    })
     if (event.target != event.currentTarget) {
         return
     }
@@ -37,11 +37,38 @@ popupOpenButton.addEventListener('click', popupToggle)
 popupCloseButton.addEventListener('click', popupToggle)
 popup.addEventListener('mousedown', popupCloseByClickOnOverlay)
 
-const likes = document.querySelectorAll('.like')
+const likes = document.querySelectorAll('.like-inactive')
+
+function likesToggle () {
+    like.classList.toggle('like_is-clicked')
+}
+// Постановка лайка, снятие
 
 const likeOn = (event) => {
-    if (event.target.classList[0] == 'like') {
-    event.target.classList.toggle('like_is-clicked')
+    if (event.target.closest('.like').classList.contains('like_is-clicked')) {
+        event.target.closest('.like').classList.toggle('like_is-clicked');
+        fetch (`https://mesto.nomoreparties.co/cohort0/cards/like/${event.target.closest('.card').id}`, {
+            method: 'DELETE',
+            headers: {
+                authorization: '80a75492-21c5-4330-a02f-308029e94b63'
+            }
+        })
+        .then(res => res.json())
+        .then((result) => {
+            console.log(event.target.closest('.likes').querySelector('.number__likes').innerText = result.likes.length)
+        });
+    } else {
+        event.target.closest('.like').classList.toggle('like_is-clicked');
+        fetch (`https://mesto.nomoreparties.co/cohort0/cards/like/${event.target.closest('.card').id}`, {
+            method: 'PUT',
+            headers: {
+                authorization: '80a75492-21c5-4330-a02f-308029e94b63'
+            }
+        })
+        .then(res => res.json())
+        .then((result) => {
+            console.log(event.target.closest('.likes').querySelector('.number__likes').innerText = result.likes.length)
+        })
     }
 }
 
@@ -49,58 +76,122 @@ cardsJs.addEventListener('click', likeOn)
 
 const itemTemplate = document.querySelector(".template__card").content;
 
-function lenta () {
-    cards.forEach(renderItem);
+// Загрузка информации о пользователе
+fetch('https://mesto.nomoreparties.co/cohort0/users/me', {
+    headers: {
+    authorization: '80a75492-21c5-4330-a02f-308029e94b63'
+    }
+})
+.then(res => res.json())
+.then((result) => {
+    userName.innerText = result.name;
+    document.querySelector('.profile__avatar').src = result.avatar;
+    userDetail.innerText = result.about;
+    changeName.value = userName.innerText;
+    changeDetail.value = userDetail.innerText;
+});
+
+// Загрузка карточек с сервера
+fetch('https://mesto.nomoreparties.co/cohort0/cards', {
+    headers: {
+    authorization: '80a75492-21c5-4330-a02f-308029e94b63'
+    }
+})
+.then(res => res.json())
+.then((result) => {
+    console.log(result);
+    for (var any in result) {
+        function renderItem (item) {
+            const cardsElement = itemTemplate.cloneNode(true);
+            cardsElement.querySelector(".card").id = result[any]._id;
+            cardsElement.querySelector(".card").likers = result[any].likes;
+            cardsElement.querySelector(".card__image").src = result[any].link;
+            cardsElement.querySelector(".card__title").innerText = result[any].name;
+            cardsElement.querySelector(".number__likes").innerText = result[any].likes.length;
+            for (var anyone in result[any].likes) {
+                if (result[any].likes[anyone]._id == "dd8b6dea22fe4ea0ad5d46f4") {
+                    cardsElement.querySelector(".like").classList.toggle('like_is-clicked');
+                }
+            };
+            if (result[any].owner._id == "dd8b6dea22fe4ea0ad5d46f4") {
+                cardsElement.querySelector('.delete').classList.toggle('delete__is-opened');
+                cardsElement.querySelector(".delete").addEventListener('click', setId);
+            }
+            cardsJs.appendChild(cardsElement);
+        }
+        renderItem()
+    }
+})
+
+// Удаление карточки
+
+function setId (evt) {
+    ChoseCard = evt.target.closest('.card');
+    popupDel.classList.toggle('popup-del_is-opened');
 }
 
-function renderItem (item) {
-    const cardsElement = itemTemplate.cloneNode(true);
-    cardsElement.querySelector(".card__image").src = item.image;
-    cardsElement.querySelector(".card__title").innerText = item.text;
-    cardsElement.querySelector(".delete").addEventListener('click', deleteItem);
-    cardsJs.appendChild(cardsElement);
+popupDelYes.addEventListener('click', RemCard);
+
+function RemCard () {
+    popupDel.classList.toggle('popup-del_is-opened');
+    ChoseCard.remove();
+    fetch(`https://mesto.nomoreparties.co/cohort0/cards/${ChoseCard.id}`, {
+        method: 'DELETE',
+        headers: {
+            authorization: '80a75492-21c5-4330-a02f-308029e94b63',
+            'Content-Type': 'application/json'
+        }
+    });
 }
-lenta ()
 
-
-function deleteItem (evt) {
-    evt.target.closest(".card").remove();
+function popupDelOpenClose () {
+    popupDel.classList.toggle('popup-del_is-opened');
 }
 
-let nickname = "Cat";
-let detail = "Люблю кушать"
-let changeName = document.querySelector('.popup__field1');
-let changeDetail = document.querySelector('.popup__field2');
-let userName = document.querySelector('.profile__info__name');
-let userDetail = document.querySelector('.profile__info__detail');
-changeName.value = nickname;
-changeDetail.value = detail;
+popupDelClose.addEventListener('click', popupDelOpenClose);
 
+//  Сохранение изменений имени профиля и дополнительной информации
 function saveChanges (evt) {
-    popup.classList.toggle('popup_is-opened')
-    userName.textContent = changeName.value;
-    userDetail.textContent = changeDetail.value;
+    popup.classList.toggle('popup_is-opened');
+    fetch('https://mesto.nomoreparties.co/cohort0/users/me', {
+        method: 'PATCH',
+        headers: {
+            authorization: '80a75492-21c5-4330-a02f-308029e94b63',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            name: changeName.value,
+            about: changeDetail.value,
+        })
+    })
+    changeName.value = userName.innerText;
+    changeDetail.value = userDetail.innerText;
 }
-
 popupSave.addEventListener('click', saveChanges);
 
+// Открытие попапа "Добавить карточку"
 function popupAddToggle () {
     popupAdd.classList.toggle('popup-add_is-opened');
 }
-
 addCard.addEventListener('click', popupAddToggle);
 
+// Закрытие попапа "Добавить карточку"
 popupAddCloseButton.addEventListener('click', popupAddToggle)
 
-let urlNewCard = document.querySelector('.popup-url');
-let textNewCard = document.querySelector('.popup-add__text');
+// Создание карточки на сервере
 function createCard () {
     popupAdd.classList.toggle('popup-add_is-opened');
-    const newCard = itemTemplate.cloneNode(true);
-    newCard.querySelector('.card__image').src = urlNewCard.value;
-    newCard.querySelector('.card__title').innerText = textNewCard.value;
-    newCard.querySelector(".delete").addEventListener('click', deleteItem);
-    cardsJs.appendChild(newCard);
+    fetch('https://mesto.nomoreparties.co/cohort0/cards', {
+        method: 'POST',
+        headers: {
+            authorization: '80a75492-21c5-4330-a02f-308029e94b63',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            name: textNewCard.value,
+            link: urlNewCard.value,
+        })
+    })
     urlNewCard.value = "";
     textNewCard.value = "";
 }
